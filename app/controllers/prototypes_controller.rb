@@ -8,11 +8,8 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    if Prototype.create(prototype_params)
-      redirect_to root_path
-    else
-      render new_prototype_path
-    end
+    Prototype.create(prototype_params)
+    redirect_to root_path
   end
 
   private
