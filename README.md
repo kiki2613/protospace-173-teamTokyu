@@ -22,3 +22,14 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# テーブル設計
+
+## prototypeテーブル
+
+| Colum               | Type    | Options       |
+| ------------------- | ------- | ------------- |
+| image               | text    |               |
+| name                | string  |               |
+| content             | string  |               |
+| user_id             | integer |               |
