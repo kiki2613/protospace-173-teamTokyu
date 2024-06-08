@@ -8,8 +8,13 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    Prototype.create(prototype_params)
-    redirect_to root_path
+    prototype = Prototype.create(prototype_params)
+    if prototype.save
+      redirect_to root_path
+    else
+      prototype.save
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
