@@ -43,7 +43,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_07_075527) do
     t.string "title", null: false
     t.text "catch_copy", null: false
     t.text "concept", null: false
-    t.string "user"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
