@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-# before_action :move_to_signed_in, expect: :index
+# before_action :move_to_signed_in, expect: [:index, :show]
 
   def index
     @prototypes = Prototype.all
