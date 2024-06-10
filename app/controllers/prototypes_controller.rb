@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-# before_action :move_to_signed_in, expect: :index
+# before_action :move_to_signed_in, expect: [:index, :show]
 
   def index
     @prototypes = Prototype.all
@@ -17,6 +17,10 @@ class PrototypesController < ApplicationController
       prototype.save
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @prototype = Prototype.find(params[:id])
   end
 
   private
