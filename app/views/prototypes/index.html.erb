@@ -6,11 +6,10 @@
         こんにちは、
         <%= link_to "#{current_user.name}さん", root_path, class: :greeting__link %>
       </div>
-    <% else %>
+    <% end %>
     <%# // ログインしているときは上記を表示する %>
-    <div class="card__wrapper">
+    <div class="card__wrapper">     
       <%= render "prototype" %>
     </div>
-    <% end %>
   </div>
 </main>
