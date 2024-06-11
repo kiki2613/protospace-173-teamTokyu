@@ -72,6 +72,11 @@ group :test do
   gem "webdrivers"
 end
 
-group :production do
-  gem 'pg'
-end
+#group :production do
+  # 'pg'
+#end
+
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
+gem 'pry-rails'
+gem 'devise'
