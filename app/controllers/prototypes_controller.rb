@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-# before_action :move_to_signed_in, expect: [:index, :show]
+before_action :move_to_signed_in, expect: [:index, :show]
 
   def index
     @prototypes = Prototype.all
@@ -26,12 +26,12 @@ class PrototypesController < ApplicationController
   private
 
   def prototype_params
-    params.require(:prototype).permit(:title, :catch_copy, :concept, :image)
+    params.require(:prototype).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id)
   end
 
-  # def move_to_signed_in
-  #   unless user_signed_in?
-  #     redirect_to action: :index
-  #   end
-  # end
+  def move_to_signed_in
+    unless user_signed_in?
+      redirect_to new_user_registration_path
+    end
+  end
 end

@@ -36,6 +36,8 @@ Things you may want to cover:
 
 
 ## Association
+- belongs_to :user
+- has_many :comment
 
 
 ## userテーブル
@@ -51,6 +53,8 @@ Things you may want to cover:
 
 
 ## Association
+- has_many :prototype
+- has_many :comment
 
 
 ## commentsテーブル
@@ -61,3 +65,7 @@ Things you may want to cover:
 | prototype          | reference    | null: false, foreign_key: true   |
 | user               | reference    | null: false, foreign_key: true   |
 
+
+## Association
+- belongs_to :prototype
+- belongs_to :user
