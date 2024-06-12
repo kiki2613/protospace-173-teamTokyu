@@ -1,10 +1,10 @@
 class PrototypesController < ApplicationController
-  before_action :move_to_signed_in, only: [:new, :create, :edit, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :p_find, only: [:show, :edit, :update]
   before_action :different_id, only: [:edit]
   
   def index
-    @prototypes = Prototype.all
+    @prototypes = Prototype.includes(:user)
   end
 
   def new
@@ -21,6 +21,8 @@ class PrototypesController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = @prototype.comments.includes(:user)
   end
 
   def destroy
