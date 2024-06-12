@@ -1,8 +1,9 @@
 class PrototypesController < ApplicationController
-  before_action :move_to_signed_in, only: [:new, :create]
+  # before_action :move_to_signed_in, only: [:new, :create, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @prototypes = Prototype.all
+    @prototypes = Prototype.includes(:user)
   end
 
   def new
@@ -36,9 +37,9 @@ class PrototypesController < ApplicationController
     params.require(:prototype).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id)
   end
 
-  def move_to_signed_in
-    unless user_signed_in?
-      redirect_to new_user_session_path
-    end
-  end
+  # def move_to_signed_in
+  #   unless user_signed_in?
+  #     redirect_to new_user_session_path
+  #   end
+  # end
 end
