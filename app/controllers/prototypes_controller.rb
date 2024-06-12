@@ -1,6 +1,8 @@
 class PrototypesController < ApplicationController
-  before_action :move_to_signed_in, only: [:new, :create]
-
+  before_action :move_to_signed_in, only: [:new, :create, :edit, :destroy]
+  before_action :p_find, only: [:show, :edit, :update]
+  before_action :different_id, only: [:edit]
+  
   def index
     @prototypes = Prototype.all
   end
@@ -19,7 +21,6 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    @prototype = Prototype.find(params[:id])
   end
 
   def destroy
@@ -28,12 +29,10 @@ class PrototypesController < ApplicationController
     redirect_to root_path
   end
 
-  def edit
-    @prototype = Prototype.find(params[:id])
+  def edit   
   end
 
   def update
-      @prototype = Prototype.find(params[:id])
     if  @prototype.update(prototype_params)
         redirect_to prototype_path
     else
@@ -49,7 +48,18 @@ class PrototypesController < ApplicationController
 
   def move_to_signed_in
     unless user_signed_in?
-      redirect_to new_user_registration_path
+      redirect_to new_user_session_path
+    end
+  end
+
+  def p_find
+    @prototype = Prototype.find(params[:id])
+  end
+
+  def different_id
+    @prototype = Prototype.find(params[:id])
+    if current_user.id != @prototype.user_id
+      redirect_to root_path
     end
   end
 end
